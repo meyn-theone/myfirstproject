@@ -1,0 +1,20 @@
+name: CI Pipline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on:linux-lastest
+
+  if: github.event_name == 'push' || github.event_name == 'pull_request'
+    
+    steps:
+      name: c
+    
+  
+      
