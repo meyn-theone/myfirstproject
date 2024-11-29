@@ -9,8 +9,7 @@ on:
       - main
 jobs:
   build:
-    runs-on: linux-lastest
-
+    runs-on: ubuntu-lastest
     if: github.event_name == 'push' || github.event_name == 'pull_request'
     
     steps:
@@ -20,8 +19,10 @@ jobs:
 
       - name: Node setup
         uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-      - name: Install dependences
+      - name: Install dependencies
         run: npm install
 
       - name: Run tests
