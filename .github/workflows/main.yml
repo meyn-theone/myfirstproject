@@ -9,12 +9,32 @@ on:
       - main
 jobs:
   build:
-    runs-on:linux-lastest
+    runs-on: linux-lastest
 
-  if: github.event_name == 'push' || github.event_name == 'pull_request'
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
     
     steps:
-      name: c
+    
+      - name: Checking code
+        uses: actions/checkout@v3
+
+      - name: Node setup
+        uses: actions/setup-node@v3
+
+      - name: Install dependences
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: if push event
+        if: github.event_name == 'push'
+        run: echo "Triggered by push"
+
+      - name: if pull_request event 
+        if: github.event_name == 'pull_request'
+        run: echo "Triggered by pull_request"
+      
     
   
       
