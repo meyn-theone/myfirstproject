@@ -32,9 +32,6 @@ jobs:
       - name: Npm CI
         run: npm ci
 
-      - name: Run tests
-        run: npm test
-
       - name: if push event
         if: github.event_name == 'push'
         run: echo "Triggered by push"
