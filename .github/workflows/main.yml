@@ -24,6 +24,9 @@ jobs:
 
       - name: Install dependencies
         run: npm init 
+      
+      - name: Install stuff in package.json
+        run: npm ci 
 
       - name: if push event
         if: github.event_name == 'push'
