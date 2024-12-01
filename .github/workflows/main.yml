@@ -23,7 +23,7 @@ jobs:
           node-version: '16'
 
       - name: Install package.json with basic stuff
-        run: npm init 
+        run: npm install <pkg>
       
       - name: Install dependences and sort in package-lock.json
         run: npm install
