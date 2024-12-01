@@ -1,4 +1,4 @@
-name: CI Pipline
+name: CI Pipeline
 
 on:
   push:
@@ -7,13 +7,13 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'pull_request'
-    
+
     steps:
-    
       - name: Checking code
         uses: actions/checkout@v3
 
@@ -21,13 +21,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - name: Create package.json
-        run: npm init 
 
       - name: Install dependencies
-        run: npm install
-      - name: Npm CI
-        run: npm ci
+        run: npm ci  
 
       - name: if push event
         if: github.event_name == 'push'
@@ -38,12 +34,12 @@ jobs:
         run: echo "Triggered by pull_request"
 
       - name: Push to Dockerhub
-        uses: docker/build-push-action@6
+        if: github.event_name == 'push'  
+        uses: docker/build-push-action@v3  
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: meyntheone/runwithGI
           tags: v1, ${{ github.run_number }}
-    
-  
+
       
