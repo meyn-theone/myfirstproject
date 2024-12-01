@@ -23,7 +23,7 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm init 
+        run: npm init -y #-y means to not enter and info like
       
       - name: Install stuff in package.json
         run: npm ci 
