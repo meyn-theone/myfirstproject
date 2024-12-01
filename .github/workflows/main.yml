@@ -22,11 +22,14 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install dependencies
-        run: npm init -y #-y means to not enter and info like
+      - name: Install package.json with basic stuff
+        run: npm init 
       
-      - name: Install stuff in package.json
-        run: npm ci 
+      - name: Install dependences and sort in package-lock.json
+        run: npm install
+      
+      - name: Install libraries from package-lock.json
+        run: npm install
 
       - name: if push event
         if: github.event_name == 'push'
