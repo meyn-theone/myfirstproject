@@ -22,15 +22,6 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install package.json with basic stuff
-        run: npm install <pkg>
-      
-      - name: Install dependences and sort in package-lock.json
-        run: npm install
-      
-      - name: Install libraries from package-lock.json
-        run: npm ci
-
       - name: if push event
         if: github.event_name == 'push'
         run: echo "Triggered by push"
